@@ -72,6 +72,12 @@ var app = new Vue({
         showNextAnswer: function ( event ){
             this.showAnswerCounter++;
             socket.emit('action',{'action':'showAnswers','number':this.showAnswerCounter})
+        },
+        playSound () {
+            if(this.question.soundfile) {
+              let audio = new Audio(this.question.soundfile);
+              audio.play();
+            }
         }
       }
 })

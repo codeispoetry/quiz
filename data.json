@@ -1,12 +1,14 @@
 {
     "questions": [
         {
-            "text": "Was ist Deine Lieblingsfarbe?",
-            "answers":[
-                {"text": "rot","correct": true},
-                {"text": "gelb","fiftyfifty": true},
-                {"text": "blau"},
-                {"text": "grün"}
+            "text": "Wohin hat Joschka Fischer die Steine geworfen?",
+            "hint": "Fragestunde im Bundestag, Januar 2001",
+            "soundfile": "assets/indieluft.mp3",
+            "answers":[  
+                {"text": "auf Autos","fiftyfifty": true},
+                {"text": "in die Luft","correct": true},
+                {"text": "auf Polizeibeamte"},
+                {"text": "für Straßenblockaden"}
             ]
         },
         {
