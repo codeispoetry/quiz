@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Cockpit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body class="cockpit">
+    <div id="app" class="container">
+        <div class="row">
+            <div class="col-12 text-center h3 bg-info text-white p-1">
+                {{questionNumber}} {{ question.text }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 h5 p-1 answer"  
+                :class="[
+                    answer.correct ? 'correct font-italic' : '',
+                    index == loggedInAnswer ? 'bg-warning' : '', 
+                    (isSolved && !answer.correct ) ? 'wrong' : '',
+                    (index > showAnswerCounter - 1 ) ? 'hide' : '',
+                    (isShowFiftyFifty && ( !answer.fiftyfifty && !answer.correct ) ) ? 'hide5050' : ''
+                ]" v-for="(answer,index) in question.answers">
+                <div v-on:click="logInAnswer(index, answer.correct)">
+                    <span class="letter">{{String.fromCharCode( index + 65 )}}) </span>
+                    <span class="text">{{ answer.text }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <button v-on:click="start" class="btn btn-lg btn-primary" :class="[questionNumber > 0 ? 'd-none': '' ]">Start</button>
+                <button v-on:click="refreshDisplay" class="btn btn-lg btn-primary">Refresh Display</button>
+                <button v-on:click="previous" class="d-none btn btn-lg btn-primary" :disabled="!isSolved">Vorherige Frage</button>
+                <button v-on:click="next" class="btn btn-lg btn-primary" :disabled="!isSolved">Nächste Frage</button>
+                <button v-on:click="showNextAnswer" class="btn btn-lg btn-danger" :disabled="showAnswerCounter == 4 || questionNumber == 0">Nächste Antwort zeigen</button>
+                <button v-on:click="useFiftyFifty" class="btn btn-lg btn-warning" :disabled="showAnswerCounter < 4 || isShowFiftyFifty">50:50 nutzen</button>
+                <button v-on:click="solve" class="btn btn-lg btn-success" :disabled="loggedInAnswer == -1">Lösung zeigen</button>
+
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                Richtig beantwortete Fragen: {{score}} von {{questionsTotalCount}}<br/>
+                50:50-Joker: {{fiftyFiftyCounter}} mal benutzt
+            </div>
+            <div class="col-6 text-white" :class="[isCorrectAnswer ? 'bg-success' : 'bg-danger']" v-if="isSolved">
+                Diese Antwort war 
+                <span v-if="isCorrectAnswer">richtig</span>
+                <span v-if="!isCorrectAnswer">falsch</span>
+                .
+            </div>
+        </div> 
+    </div>
+    
+   
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/vue/dist/vue.min.js"></script>
+    <script src="/client.js"></script>
+</body>
+</html>

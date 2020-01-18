@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Display</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body class="display">
+    <div id="app" class="container">
+        <div class="row">
+            <div class="col-12 text-center h1 bg-info text-white p-5">
+                {{ question.text }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 h4 p-5 answer"  
+                :class="[
+                    answer.correct ? 'correct' : '',
+                    index == loggedInAnswer ? 'bg-warning' : '', 
+                    (isSolved && !answer.correct ) ? 'wrong' : '',
+                    (index > showAnswerCounter - 1 ) ? 'hide' : '',
+                    (isShowFiftyFifty && ( !answer.fiftyfifty && !answer.correct ) ) ? 'hide' : ''
+                ]" v-for="(answer,index) in question.answers">
+                <div v-on:click="logInAnswer(index)">
+                    <span class="letter">{{String.fromCharCode( index + 65 )}}) </span>
+                    <span class="text">{{ answer.text }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-center h3" v-if="score > 0">
+                {{score}} Punkt<span v-if="score > 1">e</span>
+            </div>
+        </div>
+    
+    </div>
+
+
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/vue/dist/vue.min.js"></script>
+    <script src="/client.js"></script>
+</body>
+</html>

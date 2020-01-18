@@ -1,0 +1,29 @@
+.answer{
+    cursor: pointer;
+}
+
+.wrong{
+    opacity: 0;
+}
+
+
+.display .hide{
+    opacity: 0;
+}
+
+
+.cockpit .hide{
+    color: orange;
+}
+
+.cockpit .correct{
+    font-style: itlic;
+}
+
+.cockpit .hide5050{
+    opacity: 0;
+}
+
+.btn:disabled{
+    opacity: 0.1;
+}

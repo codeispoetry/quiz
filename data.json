@@ -1,0 +1,31 @@
+{
+    "questions": [
+        {
+            "text": "Was ist Deine Lieblingsfarbe?",
+            "answers":[
+                {"text": "rot","correct": true},
+                {"text": "gelb","fiftyfifty": true},
+                {"text": "blau"},
+                {"text": "grün"}
+            ]
+        },
+        {
+            "text": "Wie heißt Du?",
+            "answers":[
+                {"text": "Erik"},
+                {"text": "Tom","correct": true},
+                {"text": "Magda"},
+                {"text": "Frank","fiftyfifty": true}
+            ]
+        },
+        {
+            "text": "Was ist 5 + 5?",
+            "answers":[
+                {"text": "14"},
+                {"text": "10","correct": true},
+                {"text": "11","fiftyfifty": true},
+                {"text": "34"}
+            ]
+        }
+    ]
+}
