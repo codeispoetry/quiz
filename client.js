@@ -19,13 +19,13 @@ var app = new Vue({
         start: function ( event ){
             this.questionNumber = 1
             loadQuestion(this.questionNumber);
-            socket.emit('loadQuestion', app.questionNumber );
+            socket.emit('action',{'action':'loadQuestion','number':app.questionNumber})
         },
         previous: function ( event ) {
             if( this.questionNumber == 1) return; 
             this.questionNumber--;
             loadQuestion(this.questionNumber);
-            socket.emit('loadQuestion', app.questionNumber );
+            socket.emit('action',{'action':'loadQuestion','number':app.questionNumber})
         },
         next: function ( event ) {
             if( this.questionNumber == data.questions.length ){
@@ -34,18 +34,18 @@ var app = new Vue({
             } 
             this.questionNumber++;
             loadQuestion(this.questionNumber);
-            socket.emit('loadQuestion', app.questionNumber );
+            socket.emit('action',{'action':'loadQuestion','number':app.questionNumber})
         },
         logInAnswer: function ( index,isCorrect ){
             if(this.showAnswerCounter < 4) return;
             this.isCorrectAnswer = isCorrect;
             this.loggedInAnswer = index;
-            socket.emit('logInAnswer', this.loggedInAnswer );
+            socket.emit('action',{'action':'logInAnswer','number':this.loggedInAnswer})
         },
         useFiftyFifty: function( event ){
             this.isShowFiftyFifty = true;
             this.fiftyFiftyCounter++;
-            socket.emit('action', 'fiftyfifty' );
+            socket.emit('action',{'action':'fiftyfifty'})
         },
         solve: function( event ){
             this.isSolved = true;
@@ -53,25 +53,25 @@ var app = new Vue({
             if( this.isCorrectAnswer == true){
                 this.score++;
             }
-            socket.emit('solve', this.score );
+            socket.emit('action',{'action':'solve','number':this.score})
         },
         refreshDisplay: function (event){
-            socket.emit('loadQuestion', app.questionNumber );
-            socket.emit('showAnswers', this.showAnswerCounter );
-            socket.emit('logInAnswer', this.loggedInAnswer );
-            socket.emit('showScore', this.score );
+            socket.emit('action',{'action':'loadQuestion','number':app.questionNumber})
+            socket.emit('action',{'action':'showAnswers','number':this.showAnswerCounter})
+            socket.emit('action',{'action':'logInAnswer','number':this.loggedInAnswer})
+            socket.emit('action',{'action':'showScore','number':this.score})
 
             if( this.isShowFiftyFifty){
-                socket.emit('action', 'fiftyfifty' );
+                socket.emit('action',{'action':'fiftyfifty'})
             }
 
             if( this.isSolved){
-                socket.emit('solve', this.score );
+                socket.emit('action',{'action':'solve','number':this.score})
             }
         },
         showNextAnswer: function ( event ){
             this.showAnswerCounter++;
-            socket.emit('showAnswers', this.showAnswerCounter );
+            socket.emit('action',{'action':'showAnswers','number':this.showAnswerCounter})
         }
       }
 })
@@ -93,34 +93,31 @@ function loadQuestion( index ){
 }
 
 
-
-socket.on('loadQuestion', function(msg){
-    loadQuestion( msg );
-});
-
-socket.on('logInAnswer', function(msg){
-    app.loggedInAnswer = msg;
-});
-
-socket.on('showAnswers', function(msg){
-    app.showAnswerCounter = msg;
-});
-
-socket.on('solve', function( msg ){
-    app.isSolved = true;
-    app.score = msg;
-});
-
-socket.on('showScore', function( msg ){
-    app.score = msg;
-});
-
-socket.on('action', function(msg){
-    switch(msg){
+socket.on('action', function( msg ){
+    switch( msg.action ){
+        case "loadQuestion":
+            loadQuestion( msg.number );
+        break;
+        case "logInAnswer":
+            app.loggedInAnswer = msg.number;
+        break;
+        case "showAnswers":
+            app.showAnswerCounter = msg.number;
+        break;
         case "fiftyfifty":
             app.isShowFiftyFifty = true;
         break;
+        case "solve":
+            app.isSolved = true;
+            app.score = msg.number;
+        break;
+        case "showScore":
+            app.score = msg.number;
+        break;
+
         default:
-            console.log("Unknown action", msg);
+            console.log("action not defined", msg);
     }
+   
 });
+
