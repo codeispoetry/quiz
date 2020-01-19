@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules\@fortawesome\fontawesome-free\css\all.min.css">
     <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -35,6 +36,10 @@
         <div class="row">
             <div class="col-12 text-center h3" v-if="score > 0">
                 {{score}} Punkt<span v-if="score > 1">e</span>
+            </div>
+
+            <div class="col-12 text-center">
+                <i class="fas fa-circle text-success h1 mr-1" v-for="n in score"></i> 
             </div>
         </div>
     
