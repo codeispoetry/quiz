@@ -13,6 +13,7 @@ var app = new Vue({
         isCorrectAnswer: false,
         questionsTotalCount: 0,
         isShowFiftyFifty: false,
+        isShowImage: false,
         fiftyFiftyCounter: 0
     },
     methods: {
@@ -78,6 +79,10 @@ var app = new Vue({
               let audio = new Audio(this.question.soundfile);
               audio.play();
             }
+        },
+        showImage(){
+            this.isShowImage = true;
+            socket.emit('action',{'action':'showImage'})
         }
       }
 })
@@ -95,6 +100,7 @@ function loadQuestion( index ){
     app.showAnswerCounter = 0;
     app.isCorrectAnswer = false;
     app.isShowFiftyFifty = false;
+    app.isShowImage = false;
     app.question = data.questions[ index - 1];
 }
 
@@ -119,6 +125,9 @@ socket.on('action', function( msg ){
         break;
         case "showScore":
             app.score = msg.number;
+        break;
+        case "showImage":
+            app.isShowImage = true;
         break;
 
         default:

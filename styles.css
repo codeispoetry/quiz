@@ -27,3 +27,14 @@
 .btn:disabled{
     opacity: 0.1;
 }
+
+.overlay{
+    position: fixed;
+    background: black;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 100%;
+}

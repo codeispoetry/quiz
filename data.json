@@ -12,12 +12,14 @@
             ]
         },
         {
-            "text": "Wie heißt Du?",
+            "text": "Welches Schlagwort war 1980 nicht dabei?",
+            "hint": "ökologisch, sozial, basisdemokratisch, gewaltfrei",
+            "imagefile": "assets/vierschlagworte.jpg",
             "answers":[
-                {"text": "Erik"},
-                {"text": "Tom","correct": true},
-                {"text": "Magda"},
-                {"text": "Frank","fiftyfifty": true}
+                {"text": "sozial","fiftyfifty": true},
+                {"text": "gerecht","correct": true},
+                {"text": "ökologisch"},
+                {"text": "basisdemokratisch"}
             ]
         },
         {
