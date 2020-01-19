@@ -1,5 +1,6 @@
 var data;
 var socket = io();
+var audio;
 
 var app = new Vue({
     el: '#app',
@@ -14,6 +15,7 @@ var app = new Vue({
         questionsTotalCount: 0,
         isShowFiftyFifty: false,
         isShowImage: false,
+        isPlayingSound: false,
         fiftyFiftyCounter: 0
     },
     methods: {
@@ -75,9 +77,19 @@ var app = new Vue({
             socket.emit('action',{'action':'showAnswers','number':this.showAnswerCounter})
         },
         playSound () {
+            if(this.isPlayingSound ){
+                audio.pause();
+                this.isPlayingSound = false;
+                return;
+            }
+
             if(this.question.soundfile) {
-              let audio = new Audio(this.question.soundfile);
+              audio = new Audio(this.question.soundfile);
+              this.isPlayingSound = true;
               audio.play();
+              audio.addEventListener('ended', () => {
+                this.isPlayingSound = false;
+              })
             }
         },
         showImage(){

@@ -42,8 +42,8 @@
                 <button v-on:click="useFiftyFifty" class="btn btn-lg btn-warning" :disabled="showAnswerCounter < 4 || isShowFiftyFifty"><i class="fas fa-star-half-alt"></i> 50:50</button>
                 <button class="btn btn-lg btn-outline-info" :disabled="showAnswerCounter < 4 || loggedInAnswer != -1 || isSolved"> Antwort durch Klicken oben einloggen <i class="fas fa-level-up-alt"></i></button>
                 <button v-on:click="solve" class="btn btn-lg btn-success" :disabled="loggedInAnswer == -1"><i class="fas fa-star"></i> auflösen</button>
-                <button v-on:click="playSound" class="btn btn-lg btn-success" :disabled="!isSolved || question.soundfile == undefined"><i class="fas fa-music"></i> anhören</button>
-                <button v-on:click="showImage" class="btn btn-lg btn-success" :disabled="!isSolved || question.imagefile == undefined"><i class="fas fa-image"></i> zeigen</button>
+                <button v-on:click="playSound" class="btn btn-lg btn-success" :disabled="loggedInAnswer == -1 || question.soundfile == undefined"><i class="fas fa-music"></i> anhören</button>
+                <button v-on:click="showImage" class="btn btn-lg btn-success" :disabled="loggedInAnswer == -1 || question.imagefile == undefined"><i class="fas fa-image"></i> zeigen</button>
 
 
             </div>

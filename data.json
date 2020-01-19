@@ -14,7 +14,7 @@
         {
             "text": "Welches Schlagwort war 1980 nicht dabei?",
             "hint": "ökologisch, sozial, basisdemokratisch, gewaltfrei",
-            "imagefile": "assets/vierschlagworte.jpg",
+            "imagefile": "assets/vierschlagworte_versammlung.jpg",
             "answers":[
                 {"text": "sozial","fiftyfifty": true},
                 {"text": "gerecht","correct": true},
@@ -23,12 +23,23 @@
             ]
         },
         {
-            "text": "Was ist 5 + 5?",
+            "text": "Welche Band managte Claudia Roth, bevor sie Politikerin wurde?",
+            "soundfile": "assets/tonsteinescherben.mp3",
             "answers":[
-                {"text": "14"},
-                {"text": "10","correct": true},
-                {"text": "11","fiftyfifty": true},
-                {"text": "34"}
+                {"text": "Kraftwerk"},
+                {"text": "Die Toten Hosen","fiftyfifty": true},
+                {"text": "Ton, Steine, Scherben","correct": true},
+                {"text": "Rio Reisser"}
+            ]
+        },
+        {
+            "text": "Was ist auf dem Plakat: 'Wir haben die Erde nur von unseren Kindern geborgt' nicht zu sehen?",
+            "imagefile": "assets/nurgeborgt.mp3",
+            "answers":[
+                {"text": "Vogel"},
+                {"text": "Haus","fiftyfifty": true},
+                {"text": "Kind","correct": true},
+                {"text": "Sonnenblume"}
             ]
         }
     ]
