@@ -34,7 +34,7 @@
         },
         {
             "text": "Was ist auf dem Plakat: 'Wir haben die Erde nur von unseren Kindern geborgt' nicht zu sehen?",
-            "imagefile": "assets/nurgeborgt.mp3",
+            "imagefile": "assets/nurgeborgt.jpg",
             "answers":[
                 {"text": "Vogel"},
                 {"text": "Haus","fiftyfifty": true},

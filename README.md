@@ -9,6 +9,6 @@
   ``npm install``
 
  1. Start Server
-  ``node .\server.js``
+  ``node server.js``
 
  1. In your browser, goto localhost:3000/display.html and localhost:3000/cockpit.html
