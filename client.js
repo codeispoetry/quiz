@@ -77,6 +77,9 @@ var app = new Vue({
             socket.emit('action',{'action':'showAnswers','number':this.showAnswerCounter})
         },
         playSound () {
+            socket.emit('action',{'action':'playSound'})
+
+            /* Play Sound in Cockpit
             if(this.isPlayingSound ){
                 audio.pause();
                 this.isPlayingSound = false;
@@ -91,6 +94,7 @@ var app = new Vue({
                 this.isPlayingSound = false;
               })
             }
+            */
         },
         showImage(){
             this.isShowImage = true;
@@ -141,6 +145,12 @@ socket.on('action', function( msg ){
         case "showImage":
             app.isShowImage = true;
         break;
+        case "playSound":
+                if(app.question.soundfile) {
+                    audio = new Audio(app.question.soundfile);
+                    audio.play();
+                }
+            break;
 
         default:
             console.log("action not defined", msg);
